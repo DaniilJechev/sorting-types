@@ -1,46 +1,50 @@
 #include <iostream>
+#include <vector>
 
 bool allowedSwap (int size, int i)  //swap check
 {
-    return (i*2 + 2 <= size - 1);
+    return (i * 2 + 2 <= size);
 }
 
-void print (float arr[], int size){      //print function
-    if (size >= 0){
-        print (arr, size - 1);
-        std::cout << arr[size] << "  ";
+void print (std::vector <int> arr){      //print function
+    for (int i = 0; i < arr.size(); i++){
+        std::cout << arr[i] << " ";
     }
+    std::cout << std::endl;
 }
 
-void heapSwap(float arr[], int size, int i)   //swap functinon
+void heapSwap(std::vector <int>& arr, int size, int i)   //swap functinon
 {
     if ((size < 1) || (i < 0) ) return ;
-    while (i * 2 + 1 > size - 1 ) i--;
-    if (allowedSwap(size, i)){
-        if (arr[i*2 + 1] >= arr[i*2 + 2] && arr[i*2 + 1] > arr[i]){
-            std::swap(arr[i], arr[i*2 + 1]);
-        }else if (arr[i*2 + 2] > arr[i*2 + 1] && arr[i*2 + 2] > arr[i]){
-            std::swap(arr[i], arr[i*2 + 2]);
-        }
-    }else if (arr[i] < arr[i*2 + 1]) std::swap(arr[i], arr[i*2 + 1]);
-    
-    heapSwap(arr, size - 1, i - 1 );
+    while (i * 2 + 1 > size ) i--;
+    while ( i >= 0){
+        if (allowedSwap(size, i)){
+            if (arr[i * 2 + 1] >= arr[i * 2 + 2] && arr[i * 2 + 1] > arr[i]){   
+                std::swap(arr[i], arr[i * 2 + 1]);
+            }else if (arr[i * 2 + 2] >= arr[i * 2 + 1] && arr[i * 2 + 2] > arr[i]){
+                std::swap(arr[i], arr[i * 2 + 2]);
+            }
+        }else if (arr[i] < arr[i * 2 + 1]) std::swap(arr[i], arr[i * 2 + 1]);
+        i --;
+    }
+    return;
 }
 
-void sort (float arr[], int size)
+void sort (std::vector <int>& arr, int size)
 {
     int k = size;
-    for (int i = 0; i < k - 1; i ++){
-        heapSwap(arr,size, size);
+    for (int i = 0; i < k; i ++){
+        heapSwap(arr, size, size);
+        std::swap (arr [0], arr [size]);
         size--;
     }
 }
 
 int main()
 {
-    float arr[] = {1.6, 1.5, 4.4, 2.2 ,3.25, 1.7};
-    int size = sizeof(arr)/sizeof(arr[0]);
+    std::vector <int> arr = {2, 7, 5, 2, 3,11, 51, 2, 33, 4132, 6, 8, 5};
+    int size = arr.size() - 1;
     sort (arr, size);
     std::cout << "\nSorted array : \n" ;
-    print (arr, size - 1);
+    print (arr);
 }

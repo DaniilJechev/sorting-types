@@ -11,32 +11,35 @@ void print (std::vector <int> arr){      //print function
     std::cout << std::endl;
 }
 
-void quickSort (std::vector <int>& arr, int l, int r)
+
+int partOfSort (std::vector <int>& arr, int l, int r)
 {
-    if ( l >= r) return;
-    float i = l , j = r;
-    int middleIndex = (l + r) / 2;
-    int u = arr[middleIndex];
-    while (i < j){
-        while ( arr[i] < u) i ++;
-        while (arr[j] > u) j --;
-        if (i < j){
-            std::swap(arr[i], arr[j]);
-            i ++;
-            j --;
-            if (r - 1 == l) return;
-        } else if ( r - 1 == l ) return ;
+    int u = arr[(l + r) / 2];
+    while (l <= r){
+        while ( arr[l] < u) l ++;
+        while (arr[r] > u) r --;
+        if (l <= r){
+            std::swap(arr[l], arr[r ]);
+            l ++;
+            r --;
+        }
+        print (arr);
     }
-        quickSort (arr, l, r - middleIndex );      // left part
-        if (l != 0 && r != arr.size() - 1) return;
-        quickSort (arr, (l + r)  /  2, r);      // right part
-        return ;
-        
+    return l;
 }
+
+void quickSort (std::vector <int>& arr, int start, int end)
+{
+    if (start >= end) return;
+    int rightStart = partOfSort (arr, start, end);
+    quickSort (arr, start, rightStart - 1);
+    quickSort (arr, rightStart, end);
+}
+
 
 int main ()
 {
-    std::vector <int> arr = {1, -1, 0, 2000000000, 4};
+    std::vector <int> arr = {5,1,2,7,1,8,9,124,4,5,67,11,2};
     quickSort(arr, 0, arr.size() - 1);
     print (arr);
 }
