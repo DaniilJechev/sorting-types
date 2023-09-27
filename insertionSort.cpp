@@ -10,17 +10,17 @@ void print (std::vector <int> arr){      //print function
 
 void insertSort(std::vector <int>& arr)
 {
-    int k = 0;
     for (int i = 1; i < arr.size(); i++){
         for (int sorted = i - 1; sorted > 0; sorted--){
             if (arr[sorted + 1] < arr[sorted]) std::swap(arr[sorted + 1], arr[sorted]);
+            else break;
         }
     }
 }
 
 int main ()
 {
-    std::vector <int> arr {1, 224, 4, 42, 3, 6, 8, 2, 5 };
+    std::vector <int> arr {1, 3, 4, 142, 3, 6, 8, 45, 5 };
 
     insertSort(arr);
     print(arr);
