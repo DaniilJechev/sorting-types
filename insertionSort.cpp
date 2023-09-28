@@ -11,7 +11,7 @@ void print (std::vector <int> arr){      //print function
 void insertSort(std::vector <int>& arr)
 {
     for (int i = 1; i < arr.size(); i++){
-        for (int sorted = i - 1; sorted > 0; sorted--){
+        for (int sorted = i - 1; sorted + 1 > 0; sorted--){
             if (arr[sorted + 1] < arr[sorted]) std::swap(arr[sorted + 1], arr[sorted]);
             else break;
         }
