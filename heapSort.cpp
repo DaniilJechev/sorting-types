@@ -43,8 +43,7 @@ void sort (std::vector <int>& arr, int size)
 int main()
 {
     std::vector <int> arr = {2, 7, 5, 2, 3,11, 51, 2, 33, 4132, 6, 8, 5};
-    int size = arr.size() - 1;
-    sort (arr, size);
+    sort (arr, arr.size() - 1);
     std::cout << "\nSorted array : \n" ;
     print (arr);
 }
