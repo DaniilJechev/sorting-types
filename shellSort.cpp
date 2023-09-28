@@ -5,9 +5,9 @@
 void shellSort(std::vector <int>& arr, int step)      
 {
     if (step > 0){
-        for (int i = 0; i < arr.size() - step  ; i++){
-            for (int sorted = i + step; sorted > 0; sorted -= step){
-                if (arr[sorted] < arr[sorted - step] && sorted - step >= 0) std::swap(arr[sorted], arr[sorted - step]);
+        for (int i = 1; i < arr.size(); i++){
+            for (int sorted = i - 1; sorted + 1 > 0; sorted--){
+                if (arr[sorted + 1] < arr[sorted]) std::swap(arr[sorted + 1], arr[sorted]);
                 else break;
             }
         }
