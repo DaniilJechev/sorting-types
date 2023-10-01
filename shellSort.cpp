@@ -14,7 +14,6 @@ void shellSort(std::vector <int>& arr, int step)
 
     }else return;
     step /= 2;
-    if (step > 1) step ++;
     shellSort(arr, step);
 }
 

@@ -1,9 +1,6 @@
 #include <iostream>
 #include <vector>
 
-//separating index = [ (arr.size() - 1) / 2 ]
-//In start write a f which will partition array on 2 parts, left part < separating element, right part > separating element
-
 void print (std::vector <int> arr){      //print function
     for (int i = 0; i < arr.size(); i++){
         std::cout << arr[i] << " ";
@@ -23,7 +20,6 @@ int partOfSort (std::vector <int>& arr, int l, int r)
             l ++;
             r --;
         }
-        print (arr);
     }
     return l;
 }

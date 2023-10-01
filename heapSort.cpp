@@ -13,9 +13,9 @@ void print (std::vector <int> arr){      //print function
     std::cout << std::endl;
 }
 
-void heapSwap(std::vector <int>& arr, int size, int i)   //swap functinon
+void heapSwap(std::vector <int>& arr, int size)   //swap functinon
 {
-    if ((size < 1) || (i < 0) ) return ;
+    int i = size;
     while (i * 2 + 1 > size ) i--;
     while ( i >= 0){
         if (allowedSwap(size, i)){
@@ -32,9 +32,8 @@ void heapSwap(std::vector <int>& arr, int size, int i)   //swap functinon
 
 void sort (std::vector <int>& arr, int size)
 {
-    int k = size;
-    for (int i = 0; i < k; i ++){
-        heapSwap(arr, size, size);
+    for (int i = 0; i < arr.size() - 1; i ++){
+        heapSwap(arr, size);
         std::swap (arr [0], arr [size]);
         size--;
     }
